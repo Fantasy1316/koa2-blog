@@ -15,13 +15,13 @@
 ```
 
 ```javascript
- <% data.forEach(item => { %> // 循环渲染
-    // do something
-  <% }) %>
+<% data.forEach(item => { %> // 循环渲染
+  // do something
+<% }) %>
 ```
 
 ```javascript
-  <%- include('conponents/path', {  // 组件使用
-      data
-    })%>
+<%- include('conponents/path', {  // 组件使用
+  data
+})%>
 ```
