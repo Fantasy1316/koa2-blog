@@ -21,7 +21,23 @@
 ```
 
 ```javascript
-<%- include('conponents/path', {  // 组件使用
+<%- include('components/path', {  // 组件使用
   data
 })%>
+```
+
+### 二、MySql
+
+- mysql 下载地址：<https://dev.mysql.com/downloads/mysql/>
+- sequel 客户端下载地址：<https://sequelpro.com/download>
+- sequel 客户端链接 mysql 问题：<https://www.jianshu.com/p/9a645c473676>
+- mysql 基础语法：<https://www.runoob.com/mysql/mysql-delete-query.html>
+- eg（注：mysql 中关键字需要用``包裹）:
+
+```
+-- INSERT INTO users (username, `password`, nickname) VALUES  ("林俊杰", "123456", "JJLin")
+
+-- UPDATE users SET nickname="jjLin" WHERE id=4
+
+-- DELETE FROM users WHERE id=4
 ```
