@@ -21,7 +21,7 @@
 ```
 
 ```javascript
-<%- include('components/path', {  // 组件使用
+<%- include('conponents/path', {  // 组件使用
   data
 })%>
 ```
