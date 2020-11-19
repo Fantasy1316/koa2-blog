@@ -3,7 +3,7 @@
 ### 一、ejs 引擎
 
 ```javascript
-  <%= data %> // 变量渲染
+<%= data %> // 变量渲染
 ```
 
 ```javascript
