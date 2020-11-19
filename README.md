@@ -32,7 +32,7 @@
 - sequel 客户端下载地址：<https://sequelpro.com/download>
 - sequel 客户端链接 mysql 问题：<https://www.jianshu.com/p/9a645c473676>
 - mysql 基础语法：<https://www.runoob.com/mysql/mysql-delete-query.html>
-- eg（注：mysql 中关键字需要用``包裹）:
+- eg（注：mysql 中关键字需要用``包裹, 如 password）:
 
 ```
 -- INSERT INTO users (username, `password`, nickname) VALUES  ("林俊杰", "123456", "JJLin")
