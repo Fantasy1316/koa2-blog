@@ -46,6 +46,6 @@
 -- SELECT blogs.*, users.username, users.nickname FROM blogs INNER JOIN users ON users.id=blogs.userid
 ```
 
-## 三、Sequelize
+### 三、Sequelize
 
 演示代码：<https://github.com/JayChen1195/sequelize-test>
