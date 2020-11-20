@@ -1,6 +1,6 @@
 ## A blog project development by koa2 + mysql + radis
 
-### 一、ejs 引擎
+### 一、ejs 模版引擎
 
 ```javascript
 <%= data %> // 变量渲染
@@ -26,7 +26,7 @@
 })%>
 ```
 
-### 二、MySql
+### 二、MySql 基础知识
 
 - mysql 下载地址：<https://dev.mysql.com/downloads/mysql/>
 - sequel 客户端下载地址：<https://sequelpro.com/download>
@@ -46,6 +46,6 @@
 -- SELECT blogs.*, users.username, users.nickname FROM blogs INNER JOIN users ON users.id=blogs.userid
 ```
 
-### 三、Sequelize
+### 三、Sequelize 基础知识
 
 演示代码：<https://github.com/JayChen1195/sequelize-test>
