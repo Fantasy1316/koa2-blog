@@ -40,4 +40,12 @@
 -- UPDATE users SET nickname="jjLin" WHERE id=4
 
 -- DELETE FROM users WHERE id=4
+
+-- SELECT * FROM blogs INNER JOIN users ON users.id=blogs.userid
+
+-- SELECT blogs.*, users.username, users.nickname FROM blogs INNER JOIN users ON users.id=blogs.userid
 ```
+
+## 三、Sequelize
+
+演示代码：<https://github.com/JayChen1195/sequelize-test>
