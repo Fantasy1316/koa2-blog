@@ -6,13 +6,13 @@ router.get('/', async (ctx, next) => {
     isMe: true,
     blogList: [{
       id: 0,
-      title: "aaaaa"
+      title: 'aaaaa'
     }, {
       id: 1,
-      title: "bbbbb"
+      title: 'bbbbb'
     }, {
       id: 2,
-      title: "ccccc"
+      title: 'ccccc'
     }]
   })
 })
@@ -24,7 +24,7 @@ router.get('/json', async (ctx, next) => {
 })
 
 router.get('/profile/:userName', async (ctx, next) => {
-  const { userName } = ctx.params;
+  const { userName } = ctx.params
   ctx.body = {
     title: 'this is profile page',
     userName
