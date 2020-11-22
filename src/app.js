@@ -5,7 +5,10 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const session = require('koa-generic-session')
+const redisStore = require('koa-redis')
 
+const { REDIS_CONF } = require('./conf/db')
 const { isProd } = require('./utils/env')
 
 // 路由
@@ -32,6 +35,22 @@ app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
+}))
+
+// session 配置
+app.keys = ['WhGad#7hhgol$_gGviTB']
+app.use(session({
+  key: 'blog.sid', // cookie name,默认是 'koa.sid',
+  prefix: 'blog:sess:', // redis 前缀，默认 'koa:sess:'
+  cookie: {
+    path: '/',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // cookie过期时间，单位 ms
+  },
+  // ttl: 24 * 60 * 60 * 1000, // redis过期时间，单位 ms
+  store: redisStore({
+    all: `${REDIS_CONF.host}:${REDIS_CONF.port}`
+  })
 }))
 
 // routes
