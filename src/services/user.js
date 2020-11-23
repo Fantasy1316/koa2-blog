@@ -32,7 +32,7 @@ async function getUserInfo(userName, password) {
     return result
   }
 
-  const formatRes = formatUser(result.dataValuse)
+  const formatRes = formatUser(result.dataValues)
   return formatRes
 }
 
