@@ -53,7 +53,19 @@ async function createUser({ userName, password, gender = 3, nickName }) {
   return result
 }
 
+async function deleteUser(userName) {
+  const result = User.destory({
+    where: {
+      userName
+    }
+  })
+
+  // result 返回删除行数 
+  return result > 0
+}
+
 module.exports = {
   getUserInfo,
-  createUser
+  createUser,
+  deleteUser
 }
