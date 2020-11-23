@@ -5,6 +5,8 @@
 
 const seq = require('./seq')
 
+require('./model/index')
+
 // 链接测试
 seq.authenticate().then(() => {
   console.log('Test Ok')
