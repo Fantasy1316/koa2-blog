@@ -3,9 +3,14 @@
  * @author Alen
  */
 
-const { getUserInfo } = require('../services/user')
+const { getUserInfo, createUser } = require('../services/user')
 const { SuccessModel, ErrorModel } = require('../model/ResModel')
-const { registerUserNameIsNotExist } = require('../model/ErrorInfo')
+const {
+  registerUserNameIsNotExist,
+  registerUserNameExistInfo,
+  registerFailInfo
+} = require('../model/ErrorInfo')
+const { doCrypto } = require('../utils/cryp')
 
 /**
  * 检测用户是否存在
@@ -20,6 +25,34 @@ async function isExist(userName) {
   }
 }
 
+/**
+ * 
+ * @param {String} userName 用户名 
+ * @param {String} password 密码 
+ * @param {String} gender 性别（0 男，1 女， 3 保密） 
+ */
+async function register({ userName, password, gender = 3 }) {
+  const userInfo = await getUserInfo(userName)
+  // 检测用户是否已存在
+  if (userInfo) {
+    return new ErrorModel(registerUserNameExistInfo)
+  }
+
+  // 注册逻辑
+  try {
+    await createUser({
+      userName,
+      password: doCrypto(password),
+      gender
+    })
+    return new SuccessModel()
+  } catch (error) {
+    console.error(error.message, error.stack)
+    return new ErrorModel(registerFailInfo)
+  }
+}
+
 module.exports = {
-  isExist
+  isExist,
+  register
 }
