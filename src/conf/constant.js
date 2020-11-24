@@ -4,5 +4,5 @@
  */
 
 module.exports = {
-  DEFAULT_PICTURE: '***'
+  DEFAULT_PICTURE: 'http://img.fechen.cn/uploadfile/avatar.png'
 }
