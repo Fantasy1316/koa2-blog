@@ -53,14 +53,18 @@ async function createUser({ userName, password, gender = 3, nickName }) {
   return result
 }
 
+/**
+ * 删除用户
+ * @param {String} userName 用户名
+ */
 async function deleteUser(userName) {
-  const result = User.destory({
+  const result = await User.destroy({
     where: {
       userName
     }
   })
 
-  // result 返回删除行数 
+  // result 删除的行数
   return result > 0
 }
 
