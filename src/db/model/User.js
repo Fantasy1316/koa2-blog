@@ -1,5 +1,5 @@
 /**
- * @description user API接口
+ * @description user 数据模型
  * @author Alen
  */
 
