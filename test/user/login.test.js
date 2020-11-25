@@ -60,10 +60,39 @@ test('用户登录，期望成功', async () => {
   COOKIE = res.header['set-cookie'].join(';')
 })
 
+// 修改信息
+test('修改信息，期望成功', async () => {
+  const res = await server
+    .patch('/api/user/changeInfo')
+    .send({
+      nickName: '测试用户',
+      city: '测试地址',
+      picture: '/test.png'
+    }).set('cookie', COOKIE)
+  expect(res.body.errno).toBe(0)
+})
+
+// 修改密码
+test('修改密码， 期望成功', async () => {
+  const res = await server
+    .patch('/api/user/changePassword')
+    .send({ password, newPassword: `p_${Date.now()}` })
+    .set('cookie', COOKIE)
+  expect(res.body.errno).toBe(0)
+})
+
 // 删除用户
 test('删除用户，期望成功', async () => {
   const res = await server
     .post('/api/user/delete')
+    .set('cookie', COOKIE)
+  expect(res.body.errno).toBe(0)
+})
+
+// 退出登录
+test('退出登录，期望成功', async () => {
+  const res = await server
+    .post('/api/user/logout')
     .set('cookie', COOKIE)
   expect(res.body.errno).toBe(0)
 })
