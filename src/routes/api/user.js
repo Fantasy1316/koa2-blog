@@ -4,13 +4,19 @@
  */
 
 const router = require('koa-router')()
-const { isExist, register, login, deleteCurUser } = require('../../controller/user')
+const { isExist, register, login, deleteCurUser, changeUserInfo } = require('../../controller/user')
 const userVaildator = require('../../validator/user')
 const { genVaildator } = require('../../middlewares/validator')
 const { isTest } = require('../../utils/env')
 const { loginCheck } = require('../../middlewares/loginChecks')
 
 router.prefix('/api/user')
+
+// 检测用户名是否存在
+router.post('/isExist', async (ctx, next) => {
+  const { userName } = ctx.request.body
+  ctx.body = await isExist(userName)
+})
 
 // 注册路由
 router.post('/register', genVaildator(userVaildator), async (ctx, next) => {
@@ -37,10 +43,10 @@ router.post('/delete', loginCheck, async (ctx, next) => {
   }
 })
 
-// 检测用户名是否存在
-router.post('/isExist', async (ctx, next) => {
-  const { userName } = ctx.request.body
-  ctx.body = await isExist(userName)
+// 修改信息路由
+router.patch('/changeInfo', loginCheck, genVaildator(userVaildator), async (ctx, next) => {
+  const { nickName, city, picture } = ctx.request.body
+  ctx.body = await changeUserInfo(ctx, { nickName, city, picture })
 })
 
 module.exports = router
