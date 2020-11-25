@@ -110,7 +110,11 @@ async function changeUserInfo(ctx, { nickName, city, picture }) {
     { userName }
   )
   if (result) {
-    ctx.session.userInfo = { nickName, city, picture }
+    Object.assign(ctx.session.userInfo, {
+      nickName,
+      city,
+      picture
+    })
     return new SuccessModel()
   } else {
     return new ErrorModel(changeInfoFailInfo)
