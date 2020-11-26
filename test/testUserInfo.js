@@ -10,5 +10,5 @@
 
 module.exports = {
   USERNAME: 'test',
-  COOKIE: 'blog.sid=zjJtDy3kr5DjvFGcNFhxKtbIDTDhttC5; blog.sid.sig=de0yX6Wb5hyLtBXExKXB_JIm1vM'
+  COOKIE: 'blog.sid=3afCn_VqFBLsKYcVdWXsGX-6KlSqMlYf; blog.sid.sig=9ZY5M1Wd3-dr_nD0Ckcoz-lCE-A'
 }
