@@ -27,7 +27,6 @@ async function getProfileBlogList(userName, pageIndex = 0) {
     blogList,
     pageIndex,
     pageSize: PAGE_SIZE
-
   })
 }
 
