@@ -9,5 +9,6 @@
  */
 
 module.exports = {
+  USERNAME: 'test',
   COOKIE: 'blog.sid=zjJtDy3kr5DjvFGcNFhxKtbIDTDhttC5; blog.sid.sig=de0yX6Wb5hyLtBXExKXB_JIm1vM'
 }
