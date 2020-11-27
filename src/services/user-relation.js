@@ -3,6 +3,7 @@
  * @author Alen
  */
 
+const Sequelize = require('sequelize')
 const { User, UserRelation } = require('../db/model/index')
 const { formatUser } = require('./_format')
 
@@ -20,7 +21,10 @@ async function getUsersByFollower(followerId) {
       {
         model: UserRelation,
         where: {
-          followerId
+          followerId,
+          userId: {
+            [Sequelize.Op.ne]: followerId // 过滤自己关注自己的情况
+          }
         }
       }
     ]
@@ -52,7 +56,10 @@ async function getFollowersByUser(userId) {
       }
     ],
     where: {
-      userId
+      userId,
+      followerId: {
+        [Sequelize.Op.ne]: userId // 过滤自己关注自己的情况
+      }
     }
   })
 
