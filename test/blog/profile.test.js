@@ -4,13 +4,13 @@
  */
 
 const server = require('../server')
-const { COOKIE, USERNAME } = require('../testUserInfo')
+const { T_COOKIE, T_USERNAME } = require('../testUserInfo')
 
 // 加载更多
 test('个人主页，加载第一页数据，期望成功', async () => {
   const res = await server
-    .get(`/api/profile/loadMore/${USERNAME}/0`)
-    .set('cookie', COOKIE)
+    .get(`/api/profile/loadMore/${T_USERNAME}/0`)
+    .set('cookie', T_COOKIE)
   expect(res.body.errno).toBe(0)
 
   const data = res.body.data
