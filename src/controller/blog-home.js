@@ -32,7 +32,7 @@ async function create({ userId, content, image }) {
  * @param {Number} userId 用户 Id
  */
 async function getHomeBlogList(userId, pageIndex = 0) {
-  const result = await getFollowerBlogList({ userId, pageIndex, pageSize: PAGE_SIZE })
+  const result = await getFollowerBlogList({ userId, pageIndex })
   const { count, blogList } = result
 
   // 返回
