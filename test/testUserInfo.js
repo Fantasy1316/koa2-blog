@@ -9,10 +9,10 @@
  */
 
 module.exports = {
-  T_ID: 1,
-  T_USERNAME: 'JayChou',
-  T_COOKIE: 'blog.sid=3afCn_VqFBLsKYcVdWXsGX-6KlSqMlYf; blog.sid.sig=9ZY5M1Wd3-dr_nD0Ckcoz-lCE-A',
+  T_ID: 3,
+  T_USERNAME: 'test',
+  T_COOKIE: 'blog.sid=5DonHq6mqUyh4JXa7UByEeolHxOJdKZE; blog.sid.sig=tf6PyGC_tw4C182Yeelqp-_NE68;',
 
-  J_ID: 2,
-  J_USERNAME: 'weiboP'
+  J_ID: 1,
+  J_USERNAME: 'JayChou'
 }
