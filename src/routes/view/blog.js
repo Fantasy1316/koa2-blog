@@ -9,6 +9,7 @@ const { getProfileBlogList } = require('../../controller/blog-profile')
 const { getSquareBlogList } = require('../../controller/blog-square')
 const { getHomeBlogList } = require('../../controller/blog-home')
 const { getFans, getFollowers } = require('../../controller/user-relation')
+const { getAtMeCount, getAtMeBlog } = require('../../controller/blog-at')
 const { isExist } = require('../../controller/user')
 
 // 首页
@@ -28,6 +29,10 @@ router.get('/', loginRedirect, async (ctx, next) => {
   const followersResult = await getFollowers(userId)
   const { count: followersCount, followersList } = followersResult.data
 
+  // 获取 @ 数量
+  const atCountResult = await getAtMeCount(userId)
+  const { atCount } = atCountResult.data
+
   await ctx.render('index', {
     userData: {
       userInfo,
@@ -39,6 +44,7 @@ router.get('/', loginRedirect, async (ctx, next) => {
         count: followersCount,
         list: followersList
       },
+      atCount
     },
     blogData: {
       isEmpty,
@@ -95,6 +101,10 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
     return item.userName = myUserName
   })
 
+  // 获取 @ 数量
+  const atCountResult = await getAtMeCount(myUserInfo.id)
+  const { atCount } = atCountResult.data
+
   await ctx.render('profile', {
     blogData: {
       isEmpty,
@@ -114,7 +124,8 @@ router.get('/profile/:userName', loginRedirect, async (ctx, next) => {
       followersData: {
         count: followersCount,
         list: followersList
-      }
+      },
+      atCount
     }
   })
 })
@@ -133,6 +144,30 @@ router.get('/square', loginRedirect, async (ctx, next) => {
       pageIndex,
       count
     }
+  })
+})
+
+// @ 我的微博
+router.get('/at-me', loginRedirect, async (ctx, next) => {
+  const { id: userId } = ctx.session.userInfo
+
+  // 获取 @ 微博数量
+  // 获取 @ 微博信息
+  const atMeResult = await getAtMeBlog({ userId })
+  const { isEmpty, blogList, pageSize, pageIndex, count } = atMeResult.data
+
+  const atCountRes = await getAtMeCount(userId)
+  const { atCount } = atCountRes.data
+
+  await ctx.render('atMe', {
+    isEmpty,
+    blogData: {
+      count,
+      blogList,
+      pageSize,
+      pageIndex
+    },
+    atCount
   })
 })
 
