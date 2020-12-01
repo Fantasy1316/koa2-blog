@@ -7,7 +7,7 @@ const { Blog, User, AtRelation } = require('../db/model/index')
 const { formatBlog, formatUser } = require('./_format')
 
 /**
- * 
+ * 创建 @ 关系
  * @param {Number} blogId 微博 Id
  * @param {Number} userId 用户 Id
  */
@@ -75,8 +75,38 @@ async function getAtRelationBlog({ userId, pageIndex, pageSize = 10 }) {
   }
 }
 
+/**
+ * 更新 AtRelation
+ * @param {Object} param0 更新内容
+ * @param {Object} param1 查询条件 
+ */
+async function updateAtRelation(
+  { newIsRead },
+  { userId, isRead }
+) {
+  // 拼接更新内容
+  let updateData = {}
+  if (newIsRead) {
+    updateData.isRead = newIsRead
+  }
+  // 拼接查询条件
+  let whereData = {}
+  if (userId) {
+    whereData.userId = userId
+  }
+  if (isRead) {
+    whereData.isRead = isRead
+  }
+  // 执行
+  const result = await AtRelation.update(updateData, {
+    where: whereData
+  })
+  return result[0] > 0
+}
+
 module.exports = {
   createAtRelation,
   getAtRelationCount,
-  getAtRelationBlog
+  getAtRelationBlog,
+  updateAtRelation
 }

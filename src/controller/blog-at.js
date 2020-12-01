@@ -3,7 +3,7 @@
  * @author Alen
  */
 
-const { getAtRelationCount, getAtRelationBlog } = require('../services/at-relation')
+const { getAtRelationCount, getAtRelationBlog, updateAtRelation } = require('../services/at-relation')
 const { SuccessModel } = require('../model/ResModel')
 const { PAGE_SIZE } = require('../conf/constant')
 
@@ -42,7 +42,20 @@ async function getAtMeBlog({ userId, pageIndex = 0 }) {
   })
 }
 
+/**
+ * 标记为已读
+ * @param {Number} userId 用户Id
+ */
+async function markAsRead(userId) {
+  try {
+    await updateAtRelation({ newIsRead: true }, { userId, isRead: false })
+  } catch (error) {
+    console.error(error.message, error.stack)
+  }
+}
+
 module.exports = {
   getAtMeCount,
-  getAtMeBlog
+  getAtMeBlog,
+  markAsRead
 }
